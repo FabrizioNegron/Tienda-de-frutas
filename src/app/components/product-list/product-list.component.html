@@ -1,0 +1,51 @@
+<!-- product-list.component.html -->
+<div class="product-container">
+  <!-- Formulario a la izquierda -->
+  <app-product-form (addProduct)="addProduct($event)"></app-product-form>
+
+  <!-- Buscador -->
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Buscar por nombre o categoría..."
+      [(ngModel)]="searchText"
+      name="searchText"
+    />
+  </div>
+
+  <!-- Tabla de productos -->
+  <div class="table-wrapper" *ngIf="(products | filter: searchText).length > 0; else emptyList">
+    <table>
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let product of products | filter: searchText; index as i"
+          [ngClass]="{ 'low-stock': product.quantity <= 5 }"
+        >
+          <td><img [src]="product.image" [alt]="product.name" /></td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.category }}</td>
+          <td>S/ {{ product.price }}</td>
+          <td>{{ product.quantity }}</td>
+          <td><button (click)="removeProduct(i)">Eliminar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mensaje si no hay productos -->
+  <ng-template #emptyList>
+    <p class="empty-message">No hay productos agregados todavía.</p>
+  </ng-template>
+</div>

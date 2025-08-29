@@ -1,0 +1,88 @@
+<form (ngSubmit)="onSubmit()" #productForm="ngForm" novalidate class="product-form">
+  <h2>Agregar Producto</h2>
+
+  <input
+    type="text"
+    placeholder="Nombre"
+    [(ngModel)]="name"
+    name="name"
+    required
+    #nameInput="ngModel"
+    [class.is-invalid]="nameInput.invalid && nameInput.touched"
+  />
+  <div *ngIf="nameInput.invalid && nameInput.touched" class="error">
+    El nombre es obligatorio.
+  </div>
+
+  <input
+    type="number"
+    placeholder="Precio"
+    [(ngModel)]="price"
+    name="price"
+    min="1"
+    required
+    #priceInput="ngModel"
+    [class.is-invalid]="priceInput.invalid && priceInput.touched"
+  />
+  <div *ngIf="priceInput.invalid && priceInput.touched" class="error">
+    El precio debe ser mayor a 0.
+  </div>
+
+  <input
+    type="url"
+    placeholder="URL de imagen"
+    [(ngModel)]="image"
+    name="image"
+    required
+    #imageInput="ngModel"
+    [class.is-invalid]="imageInput.invalid && imageInput.touched"
+  />
+  <div *ngIf="imageInput.invalid && imageInput.touched" class="error">
+    La URL es obligatoria.
+  </div>
+
+  <select
+    [(ngModel)]="category"
+    name="category"
+    required
+    #categoryInput="ngModel"
+    [class.is-invalid]="categoryInput.invalid && categoryInput.touched"
+  >
+    <option value="" disabled selected>Selecciona una categoría</option>
+    <option value="fruta">Fruta</option>
+    <option value="verdura">Verdura</option>
+    <option value="bebida">Bebida</option>
+  </select>
+  <div *ngIf="categoryInput.invalid && categoryInput.touched" class="error">
+    Debes seleccionar una categoría.
+  </div>
+
+  <input
+    type="text"
+    placeholder="Descripción"
+    [(ngModel)]="description"
+    name="description"
+    required
+    #descInput="ngModel"
+    [class.is-invalid]="descInput.invalid && descInput.touched"
+  />
+  <div *ngIf="descInput.invalid && descInput.touched" class="error">
+    La descripción es obligatoria.
+  </div>
+
+  <input
+    type="number"
+    placeholder="Cantidad"
+    [(ngModel)]="quantity"
+    name="quantity"
+    min="1"
+    required
+    #qtyInput="ngModel"
+    [class.is-invalid]="qtyInput.invalid && qtyInput.touched"
+  />
+  <div *ngIf="qtyInput.invalid && qtyInput.touched" class="error">
+    La cantidad debe ser mayor a 0.
+  </div>
+
+  <button type="submit" [disabled]="productForm.invalid">Agregar Producto</button>
+</form>

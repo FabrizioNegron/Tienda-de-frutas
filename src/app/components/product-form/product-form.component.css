@@ -1,0 +1,56 @@
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f0f4f8;
+  width: 300px;
+}
+
+.product-form input,
+.product-form select {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.product-form input:focus,
+.product-form select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+  outline: none;
+}
+
+.product-form button {
+  background-color: #1e40af;
+  color: white;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product-form button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.product-form h2 {
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+  color: #1e40af;
+}
+
+.is-invalid {
+  border: 1px solid red !important;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
